@@ -1,0 +1,46 @@
+.landing-log-in-navbar {
+    padding: 0px 24px;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a154b;
+}
+
+.landing-login-logo-link {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+    text-decoration: none;
+}
+
+.slack-logo-svg {
+    height: 45px;
+    width: 45px;
+}
+
+.landing-page-logo-text {
+    font-weight: 800;
+    font-size: min(1.4rem, 24px);
+    color: white;
+}
+
+.nav-links-div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.landing-nav-links {
+    text-decoration: none;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: white;
+}

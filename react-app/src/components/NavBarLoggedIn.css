@@ -1,0 +1,34 @@
+.logged-in-navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.profile-icon-div {
+  padding: 0px 16px;
+  position: relative
+}
+
+.profile-icon-span {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon-span > img {
+  width: 26px;
+  background-size: 100%;
+}
+
+.nav_bar_search_login {
+  width: 90%;
+
+}
+.profile-icon-span img{
+  cursor:pointer;
+}

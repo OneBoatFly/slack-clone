@@ -1,0 +1,66 @@
+.groups-index-div,
+.channels-index-div {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+}
+
+.sidebar-wrapper {
+    padding: 6px 0px;
+    font-size: 15px;
+    font-weight: 300;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.channel-wrapper-cursor {
+    cursor: pointer;
+}
+
+.sidebar-icon-span {
+    margin-left: -5px;
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+}
+
+.channels-index-div a {
+    color: white;
+    text-decoration: none;
+}
+
+.plus-div {
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 20px;
+    height: 20px;
+    padding: 1px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-icon-span-navlink {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    font-weight: 300;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: -5px;
+    column-gap: 6px;
+}
+
+.plus-div svg {
+    color: white;
+    height: 18px;
+    width: 18px;
+}

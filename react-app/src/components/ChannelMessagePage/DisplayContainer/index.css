@@ -1,0 +1,10 @@
+.channel-message-container {
+  height: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  flex-direction: column-reverse;
+  /* justify-content: flex-end; */
+  overflow-y: scroll;
+  padding-bottom: 1rem;
+  scrollbar-color: rgb(255, 255, 255) rgba(147, 147, 147);
+}
