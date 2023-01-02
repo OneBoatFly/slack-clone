@@ -6,26 +6,47 @@ import {
   fetchEditChannelMessage,
 } from "../../../store/channelMessage";
 import "./index.css";
+
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import "draft-js/dist/Draft.css";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
 const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
   const { channelId } = useParams();
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
+
   useEffect(() => {
     if (cm) setContent(cm.content);
+
     if (setEdit) return () => setEdit(false);
   }, [cm]);
+
+  // useEffect(editorState => {
+  //   if (!editorState) return;
+  //   console.log('------editorState', editorState)
+
+  //   // setContent(editorState.getCurrentContent())
+  // }, [editorState])
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    const message = { content };
+
+    const contentRaw = JSON.stringify(
+      convertToRaw(editorState.getCurrentContent())
+    );
 
     return dispatch(
       edit
-        ? fetchEditChannelMessage(cmId, message)
-        : fetchCreateChannelMessage(channelId, { content })
+        ? fetchEditChannelMessage(cmId, { content: contentRaw })
+        : fetchCreateChannelMessage(channelId, { content: contentRaw })
     )
       .then(() => {
         if (setEdit) setEdit(false);
@@ -51,25 +72,7 @@ const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
     <div className="cm-input-container">
       <div className="cm-input-block">
         <form onSubmit={handleSubmit} className="cm-form" onKeyUp={handleEnter}>
-          {/* <div className="cm-error-box">
-            <ul>
-              {errors.map((error, idx) => (
-                <li key={`cmError-${idx + 1}`}>{error}</li>
-              ))}
-            </ul>
-          </div> */}
-          {/* <div className="cm-input-top">
-            <div className="cm-input-top-box">
-              <i className="fa-solid fa-bold"></i>
-            </div>
-            <div className="cm-input-top-box">
-              <i className="fa-solid fa-italic"></i>
-            </div>
-            <div className="cm-input-top-box">
-              <i className="fa-solid fa-strikethrough"></i>
-            </div>
-          </div> */}
-          <div className="cm-input-box">
+          {/* <div className="cm-input-box">
             <textarea
               rows={3}
               value={content}
@@ -77,7 +80,31 @@ const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
               required
               className="cm-input"
             />
-          </div>
+          </div> */}
+
+          <Editor
+            editorState={editorState}
+            onEditorStateChange={setEditorState}
+            toolbar={{
+              options: ["inline", "list"],
+              inline: {
+                className: undefined,
+                inDropdown: false,
+                options: ["bold", "italic", "strikethrough"],
+              },
+              list: {
+                inDropdown: false,
+                className: undefined,
+                options: ["unordered", "ordered"],
+                // unordered: { icon: unordered, className: undefined },
+                // ordered: { icon: ordered, className: undefined },
+              },
+            }}
+            wrapperClassName="wrapper-class"
+            editorClassName="editor-class"
+            toolbarClassName="toolbar-class"
+          />
+
           <div className="cm-input-bottom">
             <div className="cm-input-botton-left"></div>
             <div className="cm-submit-box">
@@ -97,7 +124,7 @@ const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
                 <button
                   type="submit"
                   className={`cm-submit-button cm-submit-button-highlight-${
-                    content != ""
+                    content !== ""
                   }`}
                 >
                   <i className="fa-solid fa-paper-plane"></i>

@@ -4,6 +4,14 @@ import { fetchDeleteChannelMessage } from "../../../store/channelMessage";
 import ChannelMessageInputContainer from "../InputContainer";
 import "./index.css";
 
+import {
+  convertToEditorState,
+  convertFromRaw,
+  Editor,
+  EditorState,
+} from "draft-js";
+
+
 const ChannelMessageBlock = ({ cm, avatar }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
@@ -36,17 +44,22 @@ const ChannelMessageBlock = ({ cm, avatar }) => {
       if (data && data.errors) setErrors(data.errors);
     });
   };
+  
   const handleEditToggle = (e) => {
     e.preventDefault();
     setEdit(true);
   };
+
+  const contentFromRaw = convertFromRaw(JSON.parse(cm.content));
+  const contentBlock = EditorState.createWithContent(contentFromRaw);
+
   return (
     <div
       className={`cm-block ${avatar ? "cm-with-avatar" : "cm-without-avatar"}`}
     >
       <div className="cm-block-left">
         {avatar ? (
-          <img src={cm.user.image_url} className="cm-avatar"></img>
+          <img src={cm.user.image_url} className="cm-avatar" alt=""></img>
         ) : (
           <p>{time}</p>
         )}
@@ -70,12 +83,12 @@ const ChannelMessageBlock = ({ cm, avatar }) => {
               </div>
             </div>
             <div className="cm-content-box">
-              <p>{cm.content}</p>
+              <Editor editorState={contentBlock} readOnly />
             </div>
           </div>
         ) : (
           <div className="cm-content-box">
-            <p>{cm.content}</p>
+            <Editor editorState={contentBlock} readOnly />
           </div>
         )}
       </div>
