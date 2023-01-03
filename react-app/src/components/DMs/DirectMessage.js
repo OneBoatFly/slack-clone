@@ -115,81 +115,24 @@ const DirectMessage = () => {
           <SideBar user={user} />
         </div>
         <div className="grid-main-view">
-          <DmBanner receiver={receiver} />
-          <ScrollToBottom className="chat-body">
-            <div className="all-msg-container flex-column">
-              {all_msgs?.map((message, ind) => (
-                <>
-                  {ind === 0 ||
-                  (ind > 0 &&
-                    ind < all_msgs.length &&
-                    all_msgs[ind].user.username !==
-                      all_msgs[ind - 1].user.username) ? (
-                    <>
-                      <div
-                        key={ind}
-                        className={`flex-msg-container ${
-                          ind < all_msgs.length - 1 &&
-                          all_msgs[ind].user.username ===
-                            all_msgs[ind + 1].user.username
-                            ? ""
-                            : "with-mb-24"
-                        }`}
-                      >
-                        <div className="user-icon-container-dm">
-                          <img
-                            className="user-icon-dm"
-                            src={message.user.image_url} alt=''
-                          />
-                        </div>
-                        <div className="msg-text-container">
-                          <span className="msg-username">
-                            {message.user.username}
-                          </span>
-                          &nbsp;&nbsp;
-                          <span className="msg-sendtime">
-                            {dateTransfer("hour", message.created_at)}:
-                            {dateTransfer("min", message.created_at)}{" "}
-                            {dateTransfer("am", message.created_at)}
-                          </span>
-                          <div className="msg-detail-container">
-                            <div className="msg-detail">{message.content}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div
-                        key={ind}
-                        className="flex-msg-container-without-icon"
-                      >
-                        <div className="msg-detail-container-without-icon">
-                          <div className="msg-detail-without-icon">
-                            {message.content}
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </>
-              ))}
-              {messages.length > 0 &&
-                messages[0] &&
-                messages.map((message, ind) => (
+          <div className="channel-message-page">
+            <DmBanner receiver={receiver} />
+            <ScrollToBottom className="chat-body">
+              <div className="all-msg-container flex-column">
+                {all_msgs?.map((message, ind) => (
                   <>
                     {ind === 0 ||
                     (ind > 0 &&
-                      ind < messages.length &&
-                      messages[ind].user.username !==
-                        messages[ind - 1].user.username) ? (
+                      ind < all_msgs.length &&
+                      all_msgs[ind].user.username !==
+                        all_msgs[ind - 1].user.username) ? (
                       <>
                         <div
                           key={ind}
                           className={`flex-msg-container ${
-                            ind < messages.length - 1 &&
-                            messages[ind].user.username ===
-                              messages[ind + 1].user.username
+                            ind < all_msgs.length - 1 &&
+                            all_msgs[ind].user.username ===
+                              all_msgs[ind + 1].user.username
                               ? ""
                               : "with-mb-24"
                           }`}
@@ -211,9 +154,7 @@ const DirectMessage = () => {
                               {dateTransfer("am", message.created_at)}
                             </span>
                             <div className="msg-detail-container">
-                              <div className="msg-detail">
-                                {message.content}
-                              </div>
+                              <div className="msg-detail">{message.content}</div>
                             </div>
                           </div>
                         </div>
@@ -234,50 +175,99 @@ const DirectMessage = () => {
                     )}
                   </>
                 ))}
-            </div>
-          </ScrollToBottom>
-          <div className="cm-input-container">
-            <div className="cm-input-block">
-              <form
-                onSubmit={sendChat}
-                className="cm-form"
-                onKeyUp={handleEnter}
-              >
-                {/* <div className="cm-input-top">
-                  <div className="cm-input-top-box">
-                    <i className="fa-solid fa-bold"></i>
+                {messages.length > 0 &&
+                  messages[0] &&
+                  messages.map((message, ind) => (
+                    <>
+                      {ind === 0 ||
+                      (ind > 0 &&
+                        ind < messages.length &&
+                        messages[ind].user.username !==
+                          messages[ind - 1].user.username) ? (
+                        <>
+                          <div
+                            key={ind}
+                            className={`flex-msg-container ${
+                              ind < messages.length - 1 &&
+                              messages[ind].user.username ===
+                                messages[ind + 1].user.username
+                                ? ""
+                                : "with-mb-24"
+                            }`}
+                          >
+                            <div className="user-icon-container-dm">
+                              <img
+                                className="user-icon-dm"
+                                src={message.user.image_url} alt=''
+                              />
+                            </div>
+                            <div className="msg-text-container">
+                              <span className="msg-username">
+                                {message.user.username}
+                              </span>
+                              &nbsp;&nbsp;
+                              <span className="msg-sendtime">
+                                {dateTransfer("hour", message.created_at)}:
+                                {dateTransfer("min", message.created_at)}{" "}
+                                {dateTransfer("am", message.created_at)}
+                              </span>
+                              <div className="msg-detail-container">
+                                <div className="msg-detail">
+                                  {message.content}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div
+                            key={ind}
+                            className="flex-msg-container-without-icon"
+                          >
+                            <div className="msg-detail-container-without-icon">
+                              <div className="msg-detail-without-icon">
+                                {message.content}
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  ))}
+              </div>
+            </ScrollToBottom>
+            <div className="cm-input-container">
+              <div className="cm-input-block">
+                <form
+                  onSubmit={sendChat}
+                  className="cm-form"
+                  onKeyUp={handleEnter}
+                >
+                  <div className="cm-input-box">
+                    <textarea
+                      rows={3}
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      required
+                      className="cm-input"
+                    />
                   </div>
-                  <div className="cm-input-top-box">
-                    <i className="fa-solid fa-italic" />
+                  <div className="cm-input-bottom">
+                    <div className="cm-input-botton-left"></div>
+                    <div className="cm-submit-box">
+                      <button
+                        type="submit"
+                        className={`cm-submit-button cm-submit-button-highlight-${
+                          chatInput !== ""
+                        }`}
+                      >
+                        <i className="fa-solid fa-paper-plane fa-lg"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div className="cm-input-top-box">
-                    <i className="fa-solid fa-strikethrough" />
-                  </div>
-                </div> */}
-                <div className="cm-input-box">
-                  <textarea
-                    rows={3}
-                    value={chatInput}
-                    onChange={(e) => setChatInput(e.target.value)}
-                    required
-                    className="cm-input"
-                    // onKeyPress={onkeyup}
-                  />
-                </div>
-                <div className="cm-input-bottom">
-                  <div className="cm-input-botton-left"></div>
-                  <div className="cm-submit-box">
-                    <button
-                      type="submit"
-                      className={`cm-submit-button-highlight-${
-                        chatInput !== ""
-                      }`}
-                    >
-                      <i className="fa-solid fa-paper-plane fa-lg"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>

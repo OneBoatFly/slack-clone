@@ -1,15 +1,11 @@
 .cm-input-container {
   width: 95%;
-  margin: auto;
-  margin-top: 0;
-  margin-bottom: 2rem;
+  margin: 1rem auto;
   border: 1px solid rgba(221, 221, 221, 1);
   display: flex;
   border-radius: 0.5rem;
   background-color: white;
-  /* height: 140px; */
   height: fit-content;
-  /* min-height: 140px; */
 }
 
 .cm-input-block {
