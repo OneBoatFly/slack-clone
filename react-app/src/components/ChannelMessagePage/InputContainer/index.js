@@ -8,7 +8,7 @@ import {
 import "./index.css";
 
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw, ContentState, convertFromRaw } from "draft-js";
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "draft-js/dist/Draft.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
@@ -55,7 +55,10 @@ const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
       .then(() => {
         if (setEdit) setEdit(false);
       })
-      .then(() => setContent(""))
+      .then(() => {
+        setContent("")
+        setEditorState(EditorState.createEmpty())
+      })
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
