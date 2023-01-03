@@ -8,7 +8,7 @@ import {
 import "./index.css";
 
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, ContentState, convertFromRaw } from "draft-js";
 import "draft-js/dist/Draft.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
@@ -23,17 +23,21 @@ const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
   );
 
   useEffect(() => {
-    if (cm) setContent(cm.content);
+    if (cm) {
+      const contentFromRaw = convertFromRaw(JSON.parse(cm.content));
+      const contentBlock = EditorState.createWithContent(contentFromRaw);
 
-    if (setEdit) return () => setEdit(false);
+      setEditorState(contentBlock)
+    }
+
+    // if (setEdit) return () => setEdit(false);
   }, [cm]);
 
-  // useEffect(editorState => {
-  //   if (!editorState) return;
-  //   console.log('------editorState', editorState)
+  useEffect(() => {
+    if (!editorState) return;
 
-  //   // setContent(editorState.getCurrentContent())
-  // }, [editorState])
+    setContent(editorState.getCurrentContent().getPlainText())
+  }, [editorState])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,8 +92,8 @@ const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
             toolbar={{
               options: ["inline", "list"],
               inline: {
-                className: undefined,
                 inDropdown: false,
+                className: undefined,
                 options: ["bold", "italic", "strikethrough"],
               },
               list: {

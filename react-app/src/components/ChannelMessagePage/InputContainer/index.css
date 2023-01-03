@@ -7,19 +7,19 @@
   display: flex;
   border-radius: 0.5rem;
   background-color: white;
-  height: 140px;
-  min-height: 140px;
+  /* height: 140px; */
+  height: fit-content;
+  /* min-height: 140px; */
 }
 
 .cm-input-block {
   width: 100%;
-  height: 140px;
-  min-height: 140px;
+  height: fit-content;
 }
 
 .cm-form {
-  height: 140px;
-  min-height: 140px;
+  height: fit-content;
+  max-height: 300px;
 }
 
 .cm-input-box {
@@ -60,13 +60,13 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  height: 30px;
+  height: fit-content;
+  border-top: 1px solid rgba(221, 221, 221, 1);
 }
 
 .cm-submit-box {
   width: fit-content;
   padding: 0.5rem 0.5rem;
-  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,10 +74,10 @@
 
 .cm-submit-button,
 .cm-cancel-button {
-  padding: 0.5rem 0.8rem;
+  padding: 0.25rem 0.5rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-align: center;
 }
 
@@ -96,4 +96,38 @@
   color: #ffffff;
   background-color: #2bac76;
   border: none;
+}
+
+.public-DraftStyleDefault-block {
+  margin: 0 !important;
+}
+
+.editor-class {
+  padding: 0.5rem 0.75rem;
+  display: block;
+  max-height: 200px !important;
+}
+
+.toolbar-class.rdw-editor-toolbar {
+  margin-bottom: 0px;
+  background-color: rgba(221, 221, 221, 0.25);
+}
+
+.rdw-option-wrapper {
+  background-color: unset !important;
+  border: unset !important;
+  border-radius: 0.25rem !important;
+  padding: 0.5rem !important;
+  margin: unset !important;
+  min-height: 25px !important;
+  max-height: 25px !important;
+  height: 25px !important;
+  min-width: 25px !important;
+  max-width: 25px !important;
+  width: 25px !important;
+}
+
+.rdw-option-wrapper:hover {
+  background-color: rgba(221, 221, 221, 1) !important;
+  box-shadow: unset !important;
 }
