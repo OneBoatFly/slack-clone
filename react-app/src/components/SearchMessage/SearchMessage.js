@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getSearch } from "../../store/search";
 import NavBarLoggedIn from "../NavBarLoggedIn";
 import SideBar from "../SideBar/SideBar";
 import Footer from "../Footer/Footer";
 import "./search.css";
+
+import {
+  convertFromRaw,
+  Editor,
+  EditorState,
+} from "draft-js";
 
 const SearchMessages = () => {
   const dispatch = useDispatch();
@@ -54,42 +60,50 @@ const SearchMessages = () => {
               {channel_message.map(
                 (msg) => (
                   <div>
-                    {msg.map((el) => (
-                      <div className="channel_msg_container" key={el.id}>
-                        <div className="channel_name_ls">
-                          <div className="first_line">
-                            <div className="firsy_line_left">
-                              <span id="channel_name">
-                                # Channel: {el.channel_name}
-                              </span>{" "}
-                              -- {el.created_at}{" "}
-                            </div>
-                            <div className="first_line_right">
-                              <Link
-                                className="view_link"
-                                to={`/channels/${el.channel_id}`}
-                              >
-                                view in channel
-                              </Link>
+                    {msg.map((el) => {
+                      const contentFromRaw = convertFromRaw(JSON.parse(el.content));
+                      console.log(contentFromRaw.getPlainText())
+                      const contentBlock = EditorState.createWithContent(contentFromRaw);
+                      // console.log(contentBlock)
+                      return (
+                        <div className="channel_msg_container" key={el.id}>
+                          <div className="channel_name_ls">
+                            <div className="first_line">
+                              <div className="firsy_line_left">
+                                <span id="channel_name">
+                                  # Channel: {el.channel_name}
+                                </span>{" "}
+                                -- {el.created_at}{" "}
+                              </div>
+                              <div className="first_line_right">
+                                <Link
+                                  className="view_link"
+                                  to={`/channels/${el.channel_id}`}
+                                >
+                                  view in channel
+                                </Link>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="channel_msg_ls">
-                          <div>
-                            <img
-                              className="user_icon"
-                              src={el.user_img}
-                              alt="user-icon"
-                            />
-                          </div>
-                          <div className="samll_box">
-                            <div id="user_name">{el.user_name}</div>
-                            <p id="search_content">{el.content}</p>
+                          <div className="channel_msg_ls">
+                            <div>
+                              <img
+                                className="user_icon"
+                                src={el.user_img}
+                                alt="user-icon"
+                              />
+                            </div>
+                            <div className="samll_box">
+                              <div id="user_name">{el.user_name}</div>
+                              <p id="search_content">
+                                <Editor editorState={contentBlock} readOnly />
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    })}
                   </div>
                 )
 

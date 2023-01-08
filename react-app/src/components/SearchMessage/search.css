@@ -33,6 +33,7 @@ img.user_icon {
 .channel_msg_ls {
     display:flex;
     flex-direction: row;
+    padding: 0.5rem 1rem 0;
 }
 
 .small_box {
@@ -43,8 +44,9 @@ img.user_icon {
 .channel_name_ls {
     font-size: 11px;
     text-align: left;
-
+    padding: 1rem 1rem 0.5rem;
 }
+
 #channel_name {
     font-weight: bold;
     color: rgb(38, 38, 185)
@@ -67,10 +69,8 @@ img.user_icon {
 }
 
 .view_link {
-
     text-decoration: none;
     color: rgb(42, 40, 40);
-    margin-right:30px
 }
 
 .view_link:hover{

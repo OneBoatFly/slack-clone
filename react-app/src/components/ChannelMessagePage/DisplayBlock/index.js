@@ -5,7 +5,6 @@ import ChannelMessageInputContainer from "../InputContainer";
 import "./index.css";
 
 import {
-  convertToEditorState,
   convertFromRaw,
   Editor,
   EditorState,
