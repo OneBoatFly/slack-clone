@@ -84,9 +84,10 @@
   font-weight: 400;
 }
 
-/* .dm-msg-detail {
-  
-  } */
+.dm-username.flex-row,
+.dm-msg-detail {
+  word-wrap: anywhere;
+}
 
 .dm-time {
   font-size: 14px;

@@ -1,6 +1,6 @@
 .channel-create-div {
     padding: 20px 0px;
-    width: 520px;
+    width: min(520px, 100%);
     max-width: 520px;
     height: min(85vh, 90%);
     background-color: white;
