@@ -7,9 +7,21 @@
   position: relative;
 }
 
-.grid-nav-top {
-  grid-area: nav;
+.grid-nav-top-mobile {
+  grid-area: nav1;
+  color: white;
   background-color: #350d36;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.grid-nav-top {
+  grid-area: nav2;
+  background-color: #350d36;
+  width: calc(100vw - 260px);
 }
 
 .grid-sidebar {
@@ -19,8 +31,63 @@
 
 .grid-main-view {
   grid-area: main;
+  width: calc(100vw - 260px)
 }
 
 .grid-footer {
   grid-area: foot;
+}
+
+.grid-nav-top-mobile-wrapper {
+  display: none;
+}
+
+@media (max-width: 744px) {
+  .grid-nav-top-mobile-wrapper {
+    display: flex;
+  }
+
+  .grid-sidebar {
+    display: none;
+  }
+
+  .landing-grid {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas: 
+      "nav1 nav2"
+      "main main"
+      "foot foot"
+  }
+
+  .grid-footer {
+    overflow-y: auto;
+  }
+
+  .channel-banner-div,
+  .channel-message-page,
+  .grid-main-view {
+      width: calc(100vw) !important;
+      box-sizing: border-box;
+    }
+
+  .grid-nav-top-mobile {
+    grid-area: nav1;
+  }
+
+  .grid-nav-top {
+    grid-area: nav2;
+    width: calc(100vw - 60px);
+  }
+
+  .logged-in-navbar {
+    width: calc(100vw - 60px);
+  }
+
+  .showSideBar {
+    display: block;
+    position: absolute;
+    top: 40px;
+    z-index: 4;
+    width: 100vw;
+  }
 }

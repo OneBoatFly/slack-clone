@@ -1,10 +1,27 @@
 .profile-user-block {
   display: flex;
   column-gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-user-block-left {
+  width: 36px;
+  min-width: 36px;
+  max-width: 36px;
 }
 
 .profile-username-box {
+  width: calc(100% - 36px);
   font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+
+.profile-user-block-right {
+  width: calc(100% - 36px);
 }
 
 .profile-avatar {

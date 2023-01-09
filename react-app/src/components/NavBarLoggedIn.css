@@ -1,14 +1,14 @@
 .logged-in-navbar {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  width: calc(100vw - 260px);
 }
 
 .profile-icon-div {
   padding: 0px 16px;
-  position: relative
+  position: relative;
+  box-sizing: border-box;
 }
 
 .profile-icon-span {
@@ -26,8 +26,8 @@
 }
 
 .nav_bar_search_login {
-  width: 90%;
-
+  flex-grow: 1;
+  max-width: calc(100vw - 260px - 32px - 26px);
 }
 .profile-icon-span img{
   cursor:pointer;

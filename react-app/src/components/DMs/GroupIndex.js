@@ -7,7 +7,7 @@ import {
 } from "../../store/groups";
 import "./GroupIndex.css";
 
-export default function GroupIndex({ user }) {
+export default function GroupIndex({ user, hideSidebar }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -70,7 +70,7 @@ export default function GroupIndex({ user }) {
                 </span>
               </div>
               <span className="sidebar-text">
-                <NavLink key={group.id} to={`/groups/${group.id}`}>
+                <NavLink key={group.id} to={`/groups/${group.id}`} onClick={hideSidebar}>
                   {group.users[0].username === user.username
                     ? group.users[1].username
                     : group.users[0].username}

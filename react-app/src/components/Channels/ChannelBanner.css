@@ -3,12 +3,16 @@
     column-gap: 16px;
     min-height: 50px;
     border-bottom: 1px solid rgb(221, 221, 221);
-    /* display: flex;
-    flex-wrap: wrap;
-    align-items: center; */
     display: grid;
     grid-template-columns: fit-content(100%) auto fit-content(100%);
     align-items: center;
+    width: calc(100vw - 260px);
+    box-sizing: border-box;
+}
+
+.channel-banner-div.channel-banner-div-all-channel {
+    display: flex;
+    width: 100%;
 }
 
 .channel-name {
@@ -16,13 +20,15 @@
     font-size: 18px;
     font-weight: 700;
     line-height: 1.33;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.channel-name > span {
     overflow: hidden;
     text-overflow: ellipsis;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    /* flex: 0 0 fit-content; */
+    white-space: nowrap;
 }
 
 .channel-topic {
@@ -37,7 +43,6 @@
 }
 
 .channel-members {
-    /* flex: 0 0 fit-content; */
     border: 1px solid rgb(221, 221, 221);
     border-radius: 5px;
     font-size: 15px;
@@ -45,7 +50,6 @@
     color: rgb(29, 28, 29);
     height: 32px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -125,8 +129,7 @@
     }
 
     .channel-banner-div {
-        display: flex;
-        justify-content: space-between;
+        grid-template-columns: auto fit-content(100%);
     }
 }
 

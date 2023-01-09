@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { createDmThunk } from "../../store/dm";
@@ -93,6 +93,15 @@ const DirectMessage = () => {
     }
   };
 
+  const sideBarRef = useRef(null);
+  const sideBarClick = () => {
+    if (sideBarRef.current.className.includes('showSideBar')) {
+      sideBarRef.current.classList.remove('showSideBar');
+      return;
+    }
+    sideBarRef.current.classList.add('showSideBar');
+  }  
+
   if (!currGroup)
     return (
       <div className="loading-dm">
@@ -107,11 +116,15 @@ const DirectMessage = () => {
   return (
     user && (
       <div className="landing-grid">
-        <div className="grid-nav-top"></div>
+        <div className="grid-nav-top-mobile">
+          <div className="grid-nav-top-mobile-wrapper" onClick={sideBarClick}>
+            <i className="fa-solid fa-bars"></i>
+          </div>
+        </div>   
         <div className="grid-nav-top">
           <NavBarLoggedIn user={user} />
         </div>
-        <div className="grid-sidebar">
+        <div className="grid-sidebar" ref={sideBarRef}>
           <SideBar user={user} />
         </div>
         <div className="grid-main-view">

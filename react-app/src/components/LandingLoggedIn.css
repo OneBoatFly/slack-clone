@@ -46,7 +46,7 @@
   grid-template-columns: 260px 1fr;
   grid-template-rows: 40px calc(100vh - 84px) 44px;
   grid-template-areas:
-    "nav nav"
+    "nav1 nav2"
     "sidebar main"
     "foot foot";
   align-items: stretch;

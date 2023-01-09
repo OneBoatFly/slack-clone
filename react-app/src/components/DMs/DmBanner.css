@@ -3,4 +3,20 @@
   font-size: 18px;
   color: #1d1c1d;
   font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dm-header,
+.dm-header-name,
+.user-name,
+.user-name-status {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.none {
+  word-wrap: anywhere;
 }

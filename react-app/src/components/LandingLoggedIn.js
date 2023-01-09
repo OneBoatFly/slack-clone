@@ -7,7 +7,7 @@ import Footer from "./Footer/Footer";
 
 export default function LandingLoggedIn({ user }) {
   return (
-    <div className="landing-grid">
+    <div className="landing-grid"> 
       <div className="grid-nav-top">
         <NavBarLoggedIn user={user} />
       </div>

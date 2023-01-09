@@ -4,7 +4,7 @@ import ChannelIndex from "../Channels/ChannelIndex";
 import GroupIndex from "../DMs/GroupIndex";
 import { useHistory } from "react-router-dom";
 
-export default function SideBar({ user }) {
+export default function SideBar({ user, hideSidebar }) {
   // const [click, setClick] = useState(false);
 
   const history = useHistory();
@@ -24,8 +24,8 @@ export default function SideBar({ user }) {
       </div>
       <div className="sidebar-index">
         {/* {click && <Redirect to="/groups/all-dms" />} */}
-        <ChannelIndex user={user} />
-        <GroupIndex user={user} />
+        <ChannelIndex user={user} hideSidebar={hideSidebar} />
+        <GroupIndex user={user} hideSidebar={hideSidebar} />
       </div>
     </div>
   );

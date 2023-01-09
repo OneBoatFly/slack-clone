@@ -14,9 +14,13 @@
     padding: 16px 12px;
     border-bottom: 1px solid rgba(29, 28, 29, 0.3);
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.all-channels-button-div {
+    text-align: center;
 }
 
 .all-channels-info-div {
@@ -27,16 +31,20 @@
 
 .all-channels-single-child-top {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     column-gap: 6px;
     padding-bottom: 6px;
     font-size: 15px;
+    overflow: hidden;
 }
 
 .all-channels-single-child-top a {
     color: inherit;
     text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
 }
 
 .all-channels-single-child-bottom {

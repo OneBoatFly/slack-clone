@@ -5,7 +5,7 @@ import { Modal } from '../../context/Modal';
 import AddChannel from './AddChannel';
 import BrowseChannelIcon from './BrowseChannelIcon';
 
-export default function ChannelIndex({user}) {
+export default function ChannelIndex({ user, hideSidebar }) {
     const userChannels = user.user_channels
 
     const [showChannels, setShowChannels] = useState(true);
@@ -31,7 +31,7 @@ export default function ChannelIndex({user}) {
                     <div className='sidebar-icon-span'>
                         {c.is_public ? '#' : <span style={{'display':'flex', 'justifyContent': 'center', 'marginLeft': '5px'}}><i style={{'width': '20px'}} className="fa-solid fa-lock"></i></span>}
                     </div>
-                    <span className='sidebar-text'><NavLink key={c.name} to={`/channels/${c.id}`}>{c.name}</NavLink></span>
+                    <span className='sidebar-text'><NavLink key={c.name} to={`/channels/${c.id}`} onClick={hideSidebar}>{c.name}</NavLink></span>
                 </div>
             )
         })}
@@ -42,7 +42,7 @@ export default function ChannelIndex({user}) {
             <span className='sidebar-text add-channels'>Add channels</span>
         </div>
         <div className='sidebar-wrapper channel-wrapper-cursor'>
-            <NavLink to='/browse-channels' className='sidebar-icon-span-navlink' >
+            <NavLink to='/browse-channels' className='sidebar-icon-span-navlink' onClick={hideSidebar} >
                 {/* <div className='sidebar-icon-span'> */}
                     <div className='plus-div'>
                         <BrowseChannelIcon />
