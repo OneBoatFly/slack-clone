@@ -24,7 +24,7 @@ def seed_users():
             'username': 'Yizhou',
             'email': 'yizhou@aa.io',
             'password':'password',
-            'image_url':'https://media.licdn.com/dms/image/C5603AQFk_0ySc7KuHA/profile-displayphoto-shrink_100_100/0/1516481604462?e=1676505600&v=beta&t=Mcy4taadYjrr5ntlJpBTwcjTF4VWw754dv7PskMEvQg',
+            'image_url':'https://media.licdn.com/dms/image/D5603AQFdJPqYZTeQDg/profile-displayphoto-shrink_400_400/0/1673460489671?e=1679529600&v=beta&t=chFJwhJVxLy4vI4ibYGtAn1qlwGnE2pw_NcOrMr0YGY',
             'is_online':True,
             'status': 'Hire me!'
         },
