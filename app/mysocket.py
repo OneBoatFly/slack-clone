@@ -6,7 +6,7 @@ from .models import db, Group, User
 if os.environ.get("FLASK_ENV") == "production":
     # change it to the actual url later
     origins = [
-        "https://slack-clone-2k4m.onrender.com", "http://slack-clone-2k4m.onrender.com"
+        "https://slack-clone-ca0w.onrender.com", "http://slack-clone-ca0w.onrender.com"
     ]
 else:
     origins = "*"

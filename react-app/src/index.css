@@ -12,3 +12,8 @@ body {
 #root {
   height: 100vh;
 }
+
+.dm-header-icon-detail,
+.cm-avatar {
+  border-radius: 0.25rem;
+}

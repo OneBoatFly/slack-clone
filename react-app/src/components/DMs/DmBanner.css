@@ -8,12 +8,16 @@
   white-space: nowrap;
 }
 
-.dm-header,
 .dm-header-name,
 .user-name,
 .user-name-status {
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
+}
+
+.dm-header {
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
