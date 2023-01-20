@@ -1,12 +1,14 @@
 .dm-header {
   font-size: 18px;
   font-weight: 700;
+  /* overflow: visible; */
 }
 
 .dm-header-icon {
   height: 24px;
   margin-right: 10px;
   position: relative;
+  z-index: inherit;
 }
 
 .dm-header-icon-detail {
@@ -20,8 +22,9 @@
   border: 2px white solid;
   border-radius: 50%;
   position: absolute;
-  bottom: -15%;
-  left: 80%;
+  bottom: -6px;
+  right: -6px;
+  z-index: 2;
 }
 
 .is_online {
