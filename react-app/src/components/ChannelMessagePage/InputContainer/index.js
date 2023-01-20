@@ -55,7 +55,10 @@ const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
       .then(() => {
         if (setEdit) setEdit(false);
       })
-      .then(() => setContent(""))
+      .then(() => {
+        setContent("")
+        setEditorState(EditorState.createEmpty())
+      })
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -66,26 +69,17 @@ const ChannelMessageInputContainer = ({ cmId, edit, setEdit, cm }) => {
     setEdit(false);
   };
 
-  const handleEnter = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleSubmit(e);
-    }
-  };
+  // const handleEnter = (e) => {
+  //   if (e.key === "Enter") {
+  //     console.log('handleEnter', e)
+  //     e.preventDefault();
+  //     handleSubmit(e);
+  //   }
+  // };
   return (
     <div className="cm-input-container">
       <div className="cm-input-block">
-        <form onSubmit={handleSubmit} className="cm-form" onKeyUp={handleEnter}>
-          {/* <div className="cm-input-box">
-            <textarea
-              rows={3}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
-              className="cm-input"
-            />
-          </div> */}
-
+        <form onSubmit={handleSubmit} className="cm-form">
           <Editor
             editorState={editorState}
             onEditorStateChange={setEditorState}
