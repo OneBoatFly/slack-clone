@@ -1,8 +1,10 @@
 .env
-.flaskenv
 __pycache__/
 *.py[cod]
 .venv
 .DS_Store
 .vscode/
-*.db
+dev.db
+Pipfile
+Pipfile.lock
+requirements.txt
