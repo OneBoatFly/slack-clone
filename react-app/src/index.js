@@ -7,6 +7,9 @@ import App from "./App";
 import configureStore from "./store";
 import { ModalProvider } from "./context/Modal";
 import SocketProvider from "./context/SocketContext";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("your GA measurement id");
 
 const store = configureStore();
 
