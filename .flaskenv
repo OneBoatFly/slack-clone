@@ -1,2 +1,2 @@
 FLASK_APP=app
-FLASK_ENV=development
+Flask_DEBUG=1
